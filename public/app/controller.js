@@ -18,16 +18,16 @@ angular.module('angularmeetupteachrApp')
 
     // load students for a classroom
     $scope.displayStudents = function(classroom) {
-        $log.log(classroom);
         $http.get('/students', { params: {classroomId: classroom.id, includeClassroom: true}}).success(function(data) {
             $scope.students = data;
         });
     }
 
     $scope.addStudent = function(newStudent, classroom) {
-        newStudent.classroomId = classroom;
+        newStudent.classroomId = classroom.id;
         $http.post('/students', newStudent).success(function(data) {
             delete $scope.newStudent;
+            data.classroom = classroom;
             $scope.students.push(data);
         });
     }
