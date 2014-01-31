@@ -5,10 +5,53 @@
     <li class="active"><a ng-href="#">Home</a></li>
     <li><a ng-href="#">About</a></li>
     <li><a ng-href="#">Contact</a></li>
-  </ul>
-  <h3 class="text-muted">angularJS Meetup Teachr</h3>
+</ul>
+<h3 class="text-muted">AngularJS Meetup Teachr</h3>
 </div>
 
+
+<div class="row marketing">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Classrooms</div>
+      <div class="panel-body">
+        <p>
+            <div class="row form-inline" role="form">
+                <div class="form-group">
+                    <select class="form-control" ng-model="classrooms" ng-options="c.name for c in classrooms">
+                        <option value="">-- choose classroom --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" ng-click="addClassroom()">Add this classroom</button>
+                </div>
+            </div>
+        </p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in students">
+                <td>{{student.id}}</td>
+                <td>{{student.firstname}}</td>
+                <td>{{student.lastname}}</td>
+                <td><button class="btn btn-default btn-xs" ng-click="remove(student)">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </div>
 
 <div class="footer">
