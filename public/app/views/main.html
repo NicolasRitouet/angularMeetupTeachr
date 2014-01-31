@@ -5,7 +5,7 @@
     <li class="active"><a ng-href="#">Home</a></li>
     <li><a ng-href="#">About</a></li>
     <li><a ng-href="#">Contact</a></li>
-     <li class="dropdown" ng-hide="currentUser.isAuthenticated">
+     <li class="dropdown" ng-if="!currentUser.isAuthenticated">
          <a href data-toggle="dropdown">Sign in <b class="caret"></b></a>
          <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
             <li>
@@ -29,7 +29,7 @@
             </li>
          </ul>
       </li>
-      <li ng-show="currentUser.isAuthenticated" class="dropdown">
+      <li ng-if="currentUser.isAuthenticated" class="dropdown">
         <a href data-toggle="dropdown">{{currentUser.username}} <b class="caret"></b></a>
          <ul class="dropdown-menu">
             <li>
@@ -57,10 +57,10 @@
                 </div>    
             </div>
             <div class="col-xs-5 col-xs-offset-1">
-                <div class="form-group" ng-show="currentUser.isAuthenticated">
+                <div class="form-group" ng-if="currentUser.isAuthenticated">
                     <label>Classroom name</label>
                     <div class="input-group">
-                        <a class="input-group-addon" ng-click="addClassroom()" href><i class="glyphicon glyphicon-plus"></i></a>
+                        <a class="input-group-addon" ng-click="addClassroom(classroomName)" href><i class="glyphicon glyphicon-plus"></i></a>
                         <input type="text" class="form-control" ng-model="classroomName">
                     </div>
                 </div>    
@@ -68,7 +68,7 @@
         </div>
     <hr>
     <!-- Table -->
-    <div class="row">
+    <div class="row" ng-if="classroom">
         <div class="col-xs-12">
             <table class="table table-striped table-condensed">
                 <thead>
@@ -80,17 +80,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-show="currentUser.isAuthenticated">
+                    <tr ng-if="currentUser.isAuthenticated">
                         <td></td>
                         <td><input type="text" class="form-control" ng-model="newStudent.firstname"/> </td>
                         <td><input type="text" class="form-control" ng-model="newStudent.lastname"/> </td>
                         <td><button class="btn btn-default" ng-click="addStudent(newStudent, classroom)">Add this student</button></td>
                     </tr>
-                    <tr ng-repeat="student in students">
+                    <tr ng-hide="students">
+                        <td colspan="4">No data to display</td>
+                    </tr>
+                    <tr ng-if="students" ng-repeat="student in students">
                         <td>{{student.classroom.name}}</td>
                         <td>{{student.firstname}}</td>
                         <td>{{student.lastname}}</td>
-                        <td><button class="btn btn-default btn-xs" ng-click="remove(student)" ng-show="currentUser.isAuthenticated">Remove</button></td>
+                        <td><button class="btn btn-default btn-xs" ng-click="removeStudent(student)" ng-if="currentUser.isAuthenticated">Remove</button></td>
                     </tr>
                 </tbody>
             </table>    

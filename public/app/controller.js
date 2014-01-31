@@ -11,9 +11,10 @@ angular.module('angularmeetupteachrApp')
     });
 
     // add a classroom
-    $scope.addClassroom = function() {
-        $http.post("/classrooms", {name: $scope.classroomName}).success(function(data) {
+    $scope.addClassroom = function(classroomName) {
+        $http.post("/classrooms", {name: classroomName}).success(function(data) {
             $scope.classrooms.push(data);
+            $scope.classroom = data;
         });
     }
 
@@ -29,11 +30,12 @@ angular.module('angularmeetupteachrApp')
         $http.post('/students', newStudent).success(function(data) {
             delete $scope.newStudent;
             data.classroom = classroom;
+            if ($scope.students) $scope.students = [];
             $scope.students.push(data);
         });
     }
 
-    $scope.remove = function(student) {
+    $scope.removeStudent = function(student) {
         var params = student;
         $log.log(student);
         $http.delete('/students/' + student.id).success(function(data) {
