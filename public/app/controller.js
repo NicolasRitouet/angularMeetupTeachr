@@ -18,7 +18,8 @@ angular.module('angularmeetupteachrApp')
 
     // load students for a classroom
     $scope.displayStudents = function(classroom) {
-        $http.get('/students', { params: {classroomId: classroom, includeClassroom: true}}).success(function(data) {
+        $log.log(classroom);
+        $http.get('/students', { params: {classroomId: classroom.id, includeClassroom: true}}).success(function(data) {
             $scope.students = data;
         });
     }
@@ -28,6 +29,14 @@ angular.module('angularmeetupteachrApp')
         $http.post('/students', newStudent).success(function(data) {
             delete $scope.newStudent;
             $scope.students.push(data);
+        });
+    }
+
+    $scope.remove = function(student) {
+        var params = student;
+        $http.delete('/students', {params: params}).success(function(data) {
+            var index = $scope.students.indexOf(student);
+            $scope.students.splice(index, 1);
         });
     }
     

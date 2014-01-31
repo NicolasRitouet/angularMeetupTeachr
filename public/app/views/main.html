@@ -20,7 +20,7 @@
                 <div class="form-group">
 
                     <label>Classrooms</label>
-                    <select class="form-control" ng-model="classroom" ng-options="c.id as c.name for c in classrooms" ng-change="displayStudents(classroom)">
+                    <select class="form-control" ng-model="classroom" ng-options="c as c.name for c in classrooms" ng-change="displayStudents(classroom)">
                         <option value="">-- choose classroom --</option>
                     </select>
                 </div>    
