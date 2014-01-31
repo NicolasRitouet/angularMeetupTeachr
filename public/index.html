@@ -7,12 +7,15 @@
     <link href="styles/main.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'>
-    
+
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="dpd.js"></script>
     
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-route.min.js"></script>
+
     <script src="app/app.js"></script>
     <script src="app/controller.js"></script>
     
@@ -22,6 +25,12 @@
 
     
         <div class="container" ng-view></div>
-    
+    <script type="text/javascript">
+    $(document).ready(function(){
+    //Handles menu drop down
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+    });
+});</script>
 </body>
 </html>

@@ -4,6 +4,10 @@ angular.module('angularmeetupteachrApp')
 .controller('MainCtrl', function ($scope, $http, $log) {
     
 
+    $scope.isAuthenticated = false;
+    $scope.currentUser = {
+        username: 'nicolas@ritouet.com'
+    }
     // Load the classrooms
     $http.get('/classrooms').success(function(data) {
         $scope.classrooms = data;
