@@ -14,14 +14,14 @@
                      <form class="form">
                         <div class="form-group">
                            <label for="username">Email address</label>
-                           <input type="email" class="form-control" id="username" placeholder="Email address" ng-model="loginUsername">
+                           <input type="email" class="form-control" id="username" placeholder="Email address" ng-model="credentials.username">
                         </div>
                         <div class="form-group">
                            <label for="password">Password</label>
-                           <input type="password" class="form-control" id="password" placeholder="Password" ng-model="loginPassword">
+                           <input type="password" class="form-control" id="password" placeholder="Password" ng-model="credentials.password">
                         </div>
                         <div class="form-group">
-                           <button type="submit" class="btn btn-success btn-block" ng-click="login(loginUsername, loginPassword)">Sign in</button>
+                           <button type="submit" class="btn btn-success btn-block" ng-click="login(credentials)">Sign in</button>
                         </div>
                      </form>
                   </div>
@@ -33,7 +33,7 @@
         <a href data-toggle="dropdown">{{currentUser.username}} <b class="caret"></b></a>
          <ul class="dropdown-menu">
             <li>
-               <a href>Logout</a>
+               <a href ng-click="logout()">Logout</a>
             </li>
          </ul>
       </li>
@@ -57,7 +57,7 @@
                 </div>    
             </div>
             <div class="col-xs-5 col-xs-offset-1">
-                <div class="form-group ">
+                <div class="form-group" ng-show="currentUser.isAuthenticated">
                     <label>Classroom name</label>
                     <div class="input-group">
                         <a class="input-group-addon" ng-click="addClassroom()" href><i class="glyphicon glyphicon-plus"></i></a>
@@ -80,7 +80,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-show="currentUser.isAuthenticated">
                         <td></td>
                         <td><input type="text" class="form-control" ng-model="newStudent.firstname"/> </td>
                         <td><input type="text" class="form-control" ng-model="newStudent.lastname"/> </td>
@@ -90,7 +90,7 @@
                         <td>{{student.classroom.name}}</td>
                         <td>{{student.firstname}}</td>
                         <td>{{student.lastname}}</td>
-                        <td><button class="btn btn-default btn-xs" ng-click="remove(student)">Remove</button></td>
+                        <td><button class="btn btn-default btn-xs" ng-click="remove(student)" ng-show="currentUser.isAuthenticated">Remove</button></td>
                     </tr>
                 </tbody>
             </table>    

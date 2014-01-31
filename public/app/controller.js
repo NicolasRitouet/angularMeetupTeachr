@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('angularmeetupteachrApp')
-.controller('MainCtrl', function ($scope, $http, $log, $location) {
+.controller('MainCtrl', function ($scope, $http, $log, $location, $cookieStore) {
     
 
-    $scope.currentUser = {}
+    $scope.currentUser = $cookieStore.get('user');
     // Load the classrooms
     $http.get('/classrooms').success(function(data) {
         $scope.classrooms = data;
@@ -35,7 +35,8 @@ angular.module('angularmeetupteachrApp')
 
     $scope.remove = function(student) {
         var params = student;
-        $http.delete('/students', {params: params}).success(function(data) {
+        $log.log(student);
+        $http.delete('/students/' + student.id).success(function(data) {
             var index = $scope.students.indexOf(student);
             $scope.students.splice(index, 1);
         });
@@ -44,23 +45,33 @@ angular.module('angularmeetupteachrApp')
 
     /*****************/
     /* LOGIN */
-    $scope.login = function(username, password) {
+    /*****************/
+    $scope.login = function(credentials) {
         var params = {
-            username: username,
-            password : password
+            username: credentials.username,
+            password : credentials.password
         }
         $http.post('/users/login', params).success(function(data) {
             $scope.currentUser = {
-                username: username,
+                username: credentials.username,
                 isAuthenticated: true,
                 sessionId: data.id,
                 id: data.uid
             }
+            $cookieStore.put('user', $scope.currentUser);
+            delete $scope.credentials;
             $location.path("/");
         }).error(function(data) {
             $log.log("Login failed: ", data);
         });
     }
+
+    $scope.logout = function () {
+        $http.post('/users/logout').success(function (result, err) {
+            $cookieStore.remove('user');
+            $scope.currentUser = null;
+        });
+    };
     
 
 });

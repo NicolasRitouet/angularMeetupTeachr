@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularmeetupteachrApp', ['ngRoute'])
+angular.module('angularmeetupteachrApp', ['ngRoute', 'ngCookies'])
 .config(function ($routeProvider) {
     $routeProvider
     .when('/', {
