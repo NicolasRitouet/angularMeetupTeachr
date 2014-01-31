@@ -1,0 +1,37 @@
+{
+	"type": "Collection",
+	"properties": {
+		"firstname": {
+			"name": "firstname",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "firstname",
+			"order": 0
+		},
+		"lastname": {
+			"name": "lastname",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "lastname",
+			"order": 1
+		},
+		"classroomId": {
+			"name": "classroomId",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "classroomId",
+			"order": 2
+		},
+		"classroom": {
+			"name": "classroom",
+			"type": "array",
+			"typeLabel": "array",
+			"required": false,
+			"id": "classroom",
+			"order": 3
+		}
+	}
+}
