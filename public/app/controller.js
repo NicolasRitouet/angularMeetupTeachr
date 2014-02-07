@@ -5,31 +5,31 @@ angular.module('angularmeetupteachrApp')
     
 
     $scope.currentUser = $cookieStore.get('user');
-    // Load the classrooms
-    $http.get('/classrooms').success(function(data) {
-        $scope.classrooms = data;
+    // Load the classes
+    $http.get('/classes').success(function(data) {
+        $scope.clazzes = data;
     });
 
-    // add a classroom
-    $scope.addClassroom = function(classroomName) {
-        $http.post("/classrooms", {name: classroomName}).success(function(data) {
-            $scope.classrooms.push(data);
-            $scope.classroom = data;
+    // add a class
+    $scope.addClass = function(className) {
+        $http.post("/classes", {name: className}).success(function(data) {
+            $scope.clazzes.push(data);
+            $scope.clazz = data;
         });
     }
 
-    // load students for a classroom
-    $scope.displayStudents = function(classroom) {
-        $http.get('/students', { params: {classroomId: classroom.id, includeClassroom: true}}).success(function(data) {
+    // load students for a class
+    $scope.displayStudents = function(clazz) {
+        $http.get('/students', { params: {classId: clazz.id, includeClass: true}}).success(function(data) {
             $scope.students = data;
         });
     }
 
-    $scope.addStudent = function(newStudent, classroom) {
-        newStudent.classroomId = classroom.id;
+    $scope.addStudent = function(newStudent, clazz) {
+        newStudent.classId = clazz.id;
         $http.post('/students', newStudent).success(function(data) {
             delete $scope.newStudent;
-            data.classroom = classroom;
+            data.clazz = clazz;
             if ($scope.students) $scope.students = [];
             $scope.students.push(data);
         });

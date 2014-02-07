@@ -44,31 +44,31 @@
 <div class="row marketing">
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Classrooms</div>
+      <div class="panel-heading">Classes</div>
       <div class="panel-body">
         <div class="row">
             <div class="col-xs-5">
                 <div class="form-group">
 
-                    <label>Classrooms</label>
-                    <select class="form-control" ng-model="classroom" ng-options="c as c.name for c in classrooms" ng-change="displayStudents(classroom)">
-                        <option value="" disabled>-- choose classroom --</option>
+                    <label>Classes</label>
+                    <select class="form-control" ng-model="clazz" ng-options="c as c.name for c in clazzes" ng-change="displayStudents(clazz)">
+                        <option value="" disabled>-- choose class --</option>
                     </select>
                 </div>    
             </div>
             <div class="col-xs-5 col-xs-offset-1">
                 <div class="form-group" ng-if="currentUser.isAuthenticated">
-                    <label>Classroom name</label>
+                    <label>Class name</label>
                     <div class="input-group">
-                        <a class="input-group-addon" ng-click="addClassroom(classroomName)" href><i class="glyphicon glyphicon-plus"></i></a>
-                        <input type="text" class="form-control" ng-model="classroomName">
+                        <a class="input-group-addon" ng-click="addClass(className)" href><i class="glyphicon glyphicon-plus"></i></a>
+                        <input type="text" class="form-control" ng-model="className">
                     </div>
                 </div>    
             </div>
         </div>
     <hr>
     <!-- Table -->
-    <div class="row" ng-if="classroom">
+    <div class="row" ng-if="clazz">
         <div class="col-xs-12">
             <table class="table table-striped table-condensed">
                 <thead>
@@ -84,13 +84,13 @@
                         <td></td>
                         <td><input type="text" class="form-control" ng-model="newStudent.firstname"/> </td>
                         <td><input type="text" class="form-control" ng-model="newStudent.lastname"/> </td>
-                        <td><button class="btn btn-default" ng-click="addStudent(newStudent, classroom)">Add this student</button></td>
+                        <td><button class="btn btn-default" ng-click="addStudent(newStudent, clazz)">Add this student</button></td>
                     </tr>
                     <tr ng-hide="students">
                         <td colspan="4">No data to display</td>
                     </tr>
                     <tr ng-if="students" ng-repeat="student in students">
-                        <td>{{student.classroom.name}}</td>
+                        <td>{{student.clazz.name}}</td>
                         <td>{{student.firstname}}</td>
                         <td>{{student.lastname}}</td>
                         <td><button class="btn btn-default btn-xs" ng-click="removeStudent(student)" ng-if="currentUser.isAuthenticated">Remove</button></td>

@@ -17,20 +17,20 @@
 			"id": "lastname",
 			"order": 1
 		},
-		"classroomId": {
-			"name": "classroomId",
+		"classId": {
+			"name": "classId",
 			"type": "string",
 			"typeLabel": "string",
 			"required": false,
-			"id": "classroomId",
+			"id": "classId",
 			"order": 2
 		},
-		"classroom": {
-			"name": "classroom",
+		"clazz": {
+			"name": "clazz",
 			"type": "array",
 			"typeLabel": "array",
 			"required": false,
-			"id": "classroom",
+			"id": "clazz",
 			"order": 3
 		}
 	}
