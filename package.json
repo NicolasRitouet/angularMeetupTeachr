@@ -2,13 +2,13 @@
     "name": "angularmeetupteachr",
     "version": "0.0.1",
     "dependencies": {
-        "deployd": "~0.6.10"
+        "deployd": "~0.8.9"
     },
     "devDependencies": {
-        "grunt": "~0.4.2",
+        "grunt": "~1.0.1",
         "grunt-deployd": "~0.1.2",
-        "grunt-contrib-watch": "~0.4.0",
-        "grunt-contrib-jshint": "~0.4.0",
+        "grunt-contrib-watch": "~1.0.0",
+        "grunt-contrib-jshint": "~1.0.0",
         "grunt-open": "~0.2.2"
     },
     "engines": {
