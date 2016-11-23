@@ -8,7 +8,7 @@
         "grunt": "~1.0.1",
         "grunt-deployd": "~0.1.2",
         "grunt-contrib-watch": "~1.0.0",
-        "grunt-contrib-jshint": "~1.0.0",
+        "grunt-contrib-jshint": "~1.1.0",
         "grunt-open": "~0.2.2"
     },
     "engines": {
